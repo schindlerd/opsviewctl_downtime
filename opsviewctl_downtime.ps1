@@ -46,6 +46,7 @@ $bytes = [System.Text.Encoding]::ASCII.GetBytes($credentials)
 $request = [System.Net.WebRequest]::Create("http://" + $server + $urlauthenticate)
 $request.Method = "POST"
 $request.ContentLength = $bytes.Length
+$request.ServicePoint.Expect100Continue = $false
 $request.ContentType = "application/json"
 $stream = $request.GetRequestStream()
 $stream.Write($bytes,0,$bytes.Length)
