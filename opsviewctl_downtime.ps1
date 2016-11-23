@@ -74,6 +74,7 @@ If ($action -eq "POST")
   $request = [System.Net.WebRequest]::Create("http://$server$urldowntime$params")
   $request.Method = $action
   $request.ContentLength = $bytes.Length
+  $request.ServicePoint.Expect100Continue = $false
   $request.ContentType = "application/json"
   $request.Headers.Add("X-Opsview-Username","$user")
   $request.Headers.Add("X-Opsview-Token",$token);
